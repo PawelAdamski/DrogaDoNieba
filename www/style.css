@@ -113,3 +113,15 @@ input:focus {
 	border-top:1px solid black;
 	width:100%;
 }
+
+
+#pozycja:hover {
+	border: 1px black solid;
+}
+
+#tytul {
+  margin-top: 0px;
+  height: 30px;
+  background-color: #eee;
+  text-align: center;
+}

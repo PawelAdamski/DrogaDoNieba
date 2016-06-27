@@ -9,6 +9,9 @@
     "installed_plugins": {
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "pl.drogaDoNieba"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "pl.drogaDoNieba"
         }
     },
     "dependent_plugins": {}
