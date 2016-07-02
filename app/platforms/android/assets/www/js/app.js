@@ -1,8 +1,6 @@
 
 
-
 app = {
-
 	titlesList: {},
 	teksty: [],
 	tytuly: [],
@@ -17,7 +15,7 @@ app = {
 	bindEvents: function() {
 		 document.getElementById("back").addEventListener("click",this.back);
 		 this.addListClickEvent();
-		 this.titlesList.on("updated",this.addListClickEvent);
+		 this.titlesList.on("updated",this.addListClickEvent.bind(this));
 	},
 
 	initData: function() {
@@ -57,6 +55,7 @@ app = {
 	},
 
 	pokazTekst: function(numer){
+		document.getElementById("back").style.display = "block"
 	    document.getElementById("piesn").style.display = "block"
 	    document.getElementById("users").style.display = "none"
 	    document.getElementById("tytul").innerHTML = this.tytuly[numer];
@@ -67,6 +66,7 @@ app = {
 	back: function() {
 	    document.getElementById("users").style.display = "block"
 	    document.getElementById("piesn").style.display = "none"
+	    document.getElementById("back").style.display = "none"
 	}
 
 }

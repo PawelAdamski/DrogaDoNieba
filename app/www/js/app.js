@@ -1,8 +1,6 @@
 
 
-
 app = {
-
 	titlesList: {},
 	teksty: [],
 	tytuly: [],
@@ -57,6 +55,9 @@ app = {
 	},
 
 	pokazTekst: function(numer){
+		document.getElementById("piesn").scrollTop = 0;
+		document.getElementById("container").scrollTop = 0;
+		document.getElementById("back").style.display = "block"
 	    document.getElementById("piesn").style.display = "block"
 	    document.getElementById("users").style.display = "none"
 	    document.getElementById("tytul").innerHTML = this.tytuly[numer];
@@ -67,6 +68,7 @@ app = {
 	back: function() {
 	    document.getElementById("users").style.display = "block"
 	    document.getElementById("piesn").style.display = "none"
+	    document.getElementById("back").style.display = "none"
 	}
 
 }
