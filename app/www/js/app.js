@@ -13,8 +13,11 @@ app = {
 
 
 	bindEvents: function() {
+		 window.addEventListener("resize",this.resizeTekst);
+		 document.getElementById("tekst").addEventListener("resize",this.resizeTekst);
 		 document.getElementById("back").addEventListener("click",this.back);
 		 this.addListClickEvent();
+		 this.resizeTekst();
 		 this.titlesList.on("updated",this.addListClickEvent.bind(this));
 	},
 
@@ -62,6 +65,7 @@ app = {
 	    document.getElementById("users").style.display = "none"
 	    document.getElementById("tytul").innerHTML = this.tytuly[numer];
 	    document.getElementById("tekst").innerHTML = this.teksty[numer];
+	    this.resizeTekst();
 	},
 
 
@@ -69,6 +73,21 @@ app = {
 	    document.getElementById("users").style.display = "block"
 	    document.getElementById("piesn").style.display = "none"
 	    document.getElementById("back").style.display = "none"
+	},
+
+
+	resizeTekst: function () {
+		tekst = document.getElementById("tekst");
+		tytul = document.getElementById("tytul");
+		back = document.getElementById("back");
+		piesn = tekst.parentElement;
+		container = piesn.parentElement;
+		body = container.parentElement;
+		container.style.height = body.clientHeight+"px";
+		piesn.style.height = Math.floor(container.clientHeight*1)+"px";
+		tekst.style.height = (piesn.clientHeight-tytul.offsetHeight-back.offsetHeight)+"px";
+		console.log("resize");
 	}
+
 
 }
