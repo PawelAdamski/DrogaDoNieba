@@ -7,8 +7,9 @@ html, body {
 }
 
 .list {
-  margin-top:0px;
-  padding:0;
+  margin:0px;
+  padding:0px;
+  overflow:scroll;
 }
 .list > li {
   display:block;
@@ -45,63 +46,17 @@ input:focus {
   outline:none;
   border-color:#aaa;
 }
-.sort {
-  padding:8px 30px;
-  border-radius: 6px;
-  border:none;
-  display:inline-block;
-  color:#fff;
-  text-decoration: none;
-  background-color: #28a8e0;
-  height:30px;
-}
-.sort:hover {
-  text-decoration: none;
-  background-color:#1b8aba;
-}
-.sort:focus {
-  outline:none;
-}
-.sort:after {
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  content:"";
-  position: relative;
-  top:-10px;
-  right:-5px;
-}
-.sort.asc:after {
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid #fff;
-  content:"";
-  position: relative;
-  top:13px;
-  right:-5px;
-}
-.sort.desc:after {
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid #fff;
-  content:"";
-  position: relative;
-  top:-10px;
-  right:-5px;
-}
+
 
 
 #piesn {
-    display:none;
     height: 100%;
 }
 
+.pozycja a{
+    color: black;
+    text-decoration: none;
+}
 
 
 #pozycja:hover {
@@ -109,15 +64,8 @@ input:focus {
 }
 
 
-#back {
-    border-top:1px solid black;
-    width:100%;
-    background-color: #eee;
-    font-size:20px;
-    height: 24px;
-    text-align: center;
-    display:none;
-}
+
+
 
 #tytul {
       padding: 5px;
@@ -136,6 +84,7 @@ input:focus {
     width: 100%;
     box-sizing: border-box;
     margin:0px;
+    font-size:14px;
 
 }
 

@@ -1,24 +1,31 @@
 
 
 app = {
-	titlesList: {},
 	teksty: [],
 	tytuly: [],
 	spisTresci: [],
 	options: {
         valueNames: [ 'numer', 'tytul' ],
-        item: '<li class="pozycja"><strong class="numer"></strong>. <span class="tytul"></span></li>',
-        page: 10
+        item: '<li class="pozycja"><strong class="numer"></strong>. <span class="tytul"></span></li>'
     },
 
 
 	bindEvents: function() {
-		 window.addEventListener("resize",this.resizeTekst);
-		 document.getElementById("tekst").addEventListener("resize",this.resizeTekst);
-		 document.getElementById("back").addEventListener("click",this.back);
-		 this.addListClickEvent();
-		 this.resizeTekst();
-		 this.titlesList.on("updated",this.addListClickEvent.bind(this));
+		if (document.getElementsByClassName("list").length>0) {
+			window.addEventListener("resize",this.resizePiesni);
+			document.getElementsByClassName("list")[0].addEventListener("resize",this.resizeTekst);		
+			this.titlesList = new List('container', this.options, this.spisTresci);
+			this.titlesList.on("updated",this.addListClickEvent.bind(this));
+			this.addListClickEvent();
+			this.resizePiesni();
+		}
+		else {
+			this.resizeTekst();
+			document.getElementById("tekst").addEventListener("resize",this.resizeTekst);		
+			numer = localStorage.getItem("numer");
+			this.pokazTekst(numer)
+			this.resizeTekst()
+		}
 	},
 
 	initData: function() {
@@ -32,13 +39,13 @@ app = {
 
     init: function() {
  		this.initData();
-        this.titlesList = new List('users', this.options, this.spisTresci);
         this.bindEvents();
     },
 
     click: function(p) {
 	    return function() {
 	        this.pokaz(p);
+	        window.location.href = 'piesn.html';
 	    }.bind(this);
 	},
 
@@ -47,46 +54,40 @@ app = {
 	    pozycje = document.getElementsByClassName("pozycja");
 	    for (i = 0; i < pozycje.length; ++i) {
 	        p = pozycje[i];
-	        p.addEventListener("click", this.click(p));
+	        p.addEventListener("click", this.click(p),true);
 	    }
 	},
 
 
 	pokaz: function(e) {
 	    numer = parseInt(e.getElementsByClassName('numer')[0].innerHTML);
-	    this.pokazTekst(numer);
+	    window.localStorage.setItem("numer",numer);
 	},
 
 	pokazTekst: function(numer){
-		document.getElementById("piesn").scrollTop = 0;
-		document.getElementById("container").scrollTop = 0;
-		document.getElementById("back").style.display = "block"
-	    document.getElementById("piesn").style.display = "block"
-	    document.getElementById("users").style.display = "none"
 	    document.getElementById("tytul").innerHTML = this.tytuly[numer];
 	    document.getElementById("tekst").innerHTML = this.teksty[numer];
 	    this.resizeTekst();
 	},
 
-
-	back: function() {
-	    document.getElementById("users").style.display = "block"
-	    document.getElementById("piesn").style.display = "none"
-	    document.getElementById("back").style.display = "none"
+	resizePiesni: function () {
+		search = document.getElementsByClassName("search")[0];
+		list = document.getElementsByClassName("list")[0];
+		container = list.parentElement;
+		body = container.parentElement;
+		container.style.height = body.clientHeight+"px";
+		list.style.height = Math.floor(container.clientHeight-search.offsetHeight-20)+"px";
 	},
+
 
 
 	resizeTekst: function () {
 		tekst = document.getElementById("tekst");
 		tytul = document.getElementById("tytul");
-		back = document.getElementById("back");
-		piesn = tekst.parentElement;
 		container = piesn.parentElement;
 		body = container.parentElement;
 		container.style.height = body.clientHeight+"px";
-		piesn.style.height = Math.floor(container.clientHeight*1)+"px";
-		tekst.style.height = (piesn.clientHeight-tytul.offsetHeight-back.offsetHeight)+"px";
-		console.log("resize");
+		tekst.style.height = (container.clientHeight-tytul.offsetHeight)+"px";
 	}
 
 
