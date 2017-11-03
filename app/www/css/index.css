@@ -39,7 +39,7 @@ input {
   line-height: 2em;
   font-size: 16px;
   margin-bottom:10px;
-  width:96%;
+  width:80%;
   margin:2%;
 }
 input:focus {
@@ -47,7 +47,12 @@ input:focus {
   border-color:#aaa;
 }
 
-
+button {
+  border:solid 1px #ccc;
+  border-radius: 5px;
+  line-height: 2em;
+  font-size: 16px;
+}
 
 #piesn {
     height: 100%;

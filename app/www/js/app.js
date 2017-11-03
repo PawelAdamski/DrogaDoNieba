@@ -11,6 +11,7 @@ app = {
 
 
 	bindEvents: function() {
+		
 		if (document.getElementsByClassName("list").length>0) {
 			window.addEventListener("resize",this.resizePiesni);
 			document.getElementsByClassName("list")[0].addEventListener("resize",this.resizeTekst);		
@@ -18,6 +19,7 @@ app = {
 			this.titlesList.on("updated",this.addListClickEvent.bind(this));
 			this.addListClickEvent();
 			this.resizePiesni();
+			document.getElementById("literyCyfry").addEventListener("click", this.changeKeyboard);
 		}
 		else {
 			this.resizeTekst();
@@ -88,7 +90,19 @@ app = {
 		body = container.parentElement;
 		container.style.height = body.clientHeight+"px";
 		tekst.style.height = (container.clientHeight-tytul.offsetHeight)+"px";
+	},
+
+	changeKeyboard: function () {
+		currentKeyboard = document.getElementById("literyCyfry").innerHTML;
+		if (currentKeyboard==="Abc") {
+			document.getElementById("literyCyfry").innerHTML = "123";
+			document.getElementById("search").type = "Text";
+			document.getElementById("search").placeholder = "Numer, Tytuł";
+			document.getElementById("search").value = "";
+		} else {
+			document.getElementById("literyCyfry").innerHTML = "Abc";
+			document.getElementById("search").type = "Number";
+			document.getElementById("search").value = "";
+		}
 	}
-
-
 }
